@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const express = require('express');
+const compression = require('compression');
 const BitMEXClient = require('bitmex-realtime-api');
 const debug = require('debug')('BitMEX:Delta-Server');
 
@@ -13,6 +14,8 @@ module.exports = function createServer(config) {
 
 function initServer(config) {
   const app = express();
+
+  app.use(compression());
 
   app.set('view engine', 'ejs');
 
